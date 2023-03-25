@@ -1,10 +1,24 @@
-import { View, Text } from "react-native";
+import { View, Text, StyleSheet } from "react-native";
 import React from "react";
 
 export default function GameScreen() {
   return (
-    <View>
-      <Text>GameScreen</Text>
+    <View style={style.container}>
+      <Text>Opponents Guess</Text>
+      <View>
+        <Text>Higher or lower?</Text>
+      </View>
+      <View>
+        <Text>Log rounds</Text>
+      </View>
     </View>
   );
 }
+
+const style = StyleSheet.create({
+  container: {
+    flex: 1,
+
+    backgroundColor: "white",
+  },
+});

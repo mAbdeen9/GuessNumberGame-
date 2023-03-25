@@ -2,7 +2,7 @@ import { View, TextInput, StyleSheet, Alert } from "react-native";
 import React, { useState } from "react";
 import PrimaryButton from "../components/PrimaryButton";
 
-export default function StartGameScreen() {
+export default function StartGameScreen({ pickedNumber }) {
   const [enteredNumber, setEnteredNumber] = useState("");
 
   const enteredNumberHandler = (enteredText) => {
@@ -18,6 +18,8 @@ export default function StartGameScreen() {
       ]);
       return;
     }
+
+    pickedNumber(enteredNumber);
   };
 
   return (
@@ -45,7 +47,7 @@ const style = StyleSheet.create({
   container: {
     backgroundColor: "#262A33",
     padding: 16,
-    marginTop: 100,
+    marginTop: 50,
     marginHorizontal: 20,
     borderRadius: 26,
     elevation: 5,

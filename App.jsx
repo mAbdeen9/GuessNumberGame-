@@ -1,13 +1,20 @@
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, View } from "react-native";
+import { useState } from "react";
+import { StyleSheet, SafeAreaView } from "react-native";
+import GameScreen from "./screens/GameScreen";
 import StartGameScreen from "./screens/StartGameScreen";
 
 export default function App() {
+  const [pickedNumber, setPickedNumber] = useState("");
+  const pickNumberHandler = (num) => setPickedNumber(num);
+  let screen = <StartGameScreen pickedNumber={pickNumberHandler} />;
+  if (pickedNumber) screen = <GameScreen />;
+
   return (
-    <View style={styles.container}>
-      <StartGameScreen />
+    <SafeAreaView style={styles.container}>
+      {screen}
       <StatusBar style="light" />
-    </View>
+    </SafeAreaView>
   );
 }
 
