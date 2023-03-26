@@ -1,7 +1,7 @@
 import { View, Text, Pressable, StyleSheet } from "react-native";
 import React from "react";
 
-export default function PrimaryButton({ children, color, onPress }) {
+export default function PrimaryButton({ children, color = "", onPress }) {
   const style = StyleSheet.create({
     container: {
       backgroundColor: `${color}`,

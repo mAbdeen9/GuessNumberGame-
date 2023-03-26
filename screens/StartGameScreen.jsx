@@ -1,6 +1,7 @@
 import { View, TextInput, StyleSheet, Alert } from "react-native";
 import React, { useState } from "react";
-import PrimaryButton from "../components/PrimaryButton";
+import PrimaryButton from "../components/ui/PrimaryButton";
+import { colors } from "../utils/colors";
 
 export default function StartGameScreen({ pickedNumber }) {
   const [enteredNumber, setEnteredNumber] = useState("");
@@ -14,7 +15,7 @@ export default function StartGameScreen({ pickedNumber }) {
   const confirmHandler = () => {
     if (isNaN(parseInt(enteredNumber))) {
       Alert.alert("Wrong input", "Please enter a valid number between 1 - 99", [
-        { text: "ok", style: "default", onPress: resetInput },
+        { text: "ok", style: "destructive", onPress: resetInput },
       ]);
       return;
     }
@@ -32,10 +33,10 @@ export default function StartGameScreen({ pickedNumber }) {
         onChangeText={enteredNumberHandler}
       />
       <View style={style.btnBox}>
-        <PrimaryButton onPress={confirmHandler} color={"#5FBCA0"}>
+        <PrimaryButton onPress={confirmHandler} color={colors.btnLightGreen}>
           Confirm
         </PrimaryButton>
-        <PrimaryButton onPress={resetInput} color="#FF6B89">
+        <PrimaryButton onPress={resetInput} color={colors.btnLightRed}>
           Reset
         </PrimaryButton>
       </View>
@@ -45,9 +46,9 @@ export default function StartGameScreen({ pickedNumber }) {
 
 const style = StyleSheet.create({
   container: {
-    backgroundColor: "#262A33",
+    backgroundColor: colors.secondaryColor,
     padding: 16,
-    marginTop: 50,
+    marginTop: 80,
     marginHorizontal: 20,
     borderRadius: 26,
     elevation: 5,
