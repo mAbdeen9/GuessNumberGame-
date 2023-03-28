@@ -4,7 +4,9 @@ import Title from "../components/ui/Title";
 import PrimaryButton from "../components/ui/PrimaryButton";
 import NumberContainer from "../components/game/NumberContainer";
 let firstGuess;
-export default function GameScreen({ pickedNumber }) {
+let minBoundary = 1;
+let maxBoundary = 100;
+export default function GameScreen({ pickedNumber, gameOver }) {
   const [currentGuess, setCurrentGuess] = useState("");
   let initialGuess;
 
@@ -12,6 +14,12 @@ export default function GameScreen({ pickedNumber }) {
     initialGuess = generateRandomBetween(1, 100, pickedNumber);
     setCurrentGuess(initialGuess);
   }, []);
+
+  useEffect(() => {
+    if (currentGuess == pickedNumber) {
+      gameOver();
+    }
+  }, [currentGuess]);
 
   const guessNumberHandler = (status) => {
     if (
@@ -26,14 +34,11 @@ export default function GameScreen({ pickedNumber }) {
       ]);
     }
 
-    if (status === "bigger") {
-      setCurrentGuess(generateRandomBetween(currentGuess, 100, pickedNumber));
-      return;
-    }
-    if (status === "smaller") {
-      setCurrentGuess(generateRandomBetween(1, currentGuess, pickedNumber));
-      return;
-    }
+    if (status === "bigger") minBoundary = currentGuess;
+    if (status === "smaller") maxBoundary = currentGuess;
+    setCurrentGuess(
+      generateRandomBetween(maxBoundary, minBoundary, pickedNumber)
+    );
   };
 
   return (
@@ -76,7 +81,7 @@ const style = StyleSheet.create({
 function generateRandomBetween(min, max, exclude) {
   const rndNum = Math.floor(Math.random() * (max - min)) + min;
 
-  if (rndNum === exclude && firstGuess == "") {
+  if (rndNum === exclude && firstGuess === "") {
     return generateRandomBetween(min, max, exclude);
   } else {
     firstGuess = "1";
