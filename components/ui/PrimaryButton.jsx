@@ -1,7 +1,12 @@
 import { View, Text, Pressable, StyleSheet } from "react-native";
 import React from "react";
 
-export default function PrimaryButton({ children, color = "", onPress }) {
+export default function PrimaryButton({
+  children,
+  color = "",
+  onPress,
+  size = 20,
+}) {
   const style = StyleSheet.create({
     container: {
       backgroundColor: `${color}`,
@@ -10,7 +15,7 @@ export default function PrimaryButton({ children, color = "", onPress }) {
       alignItems: "center",
       borderRadius: 32,
       margin: 5,
-      width: 120,
+      width: 100,
       alignSelf: "center",
       overflow: "hidden",
     },
@@ -22,7 +27,7 @@ export default function PrimaryButton({ children, color = "", onPress }) {
       alignItems: "center",
     },
     text: {
-      fontSize: 22,
+      fontSize: size,
       color: "white",
       fontWeight: "bold",
     },
@@ -35,7 +40,9 @@ export default function PrimaryButton({ children, color = "", onPress }) {
   return (
     <View style={style.container}>
       <Pressable
-        style={({ pressed }) => (pressed ? style.pressed : style.btn)}
+        style={({ pressed }) =>
+          pressed ? [style.pressed, style.btn] : style.btn
+        }
         onPress={handlePress}
       >
         <Text style={style.text}>{children}</Text>

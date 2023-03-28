@@ -1,4 +1,4 @@
-import { View, TextInput, StyleSheet, Alert } from "react-native";
+import { View, TextInput, StyleSheet, Alert, Text } from "react-native";
 import React, { useState } from "react";
 import PrimaryButton from "../components/ui/PrimaryButton";
 import { colors } from "../utils/colors";
@@ -25,20 +25,24 @@ export default function StartGameScreen({ pickedNumber }) {
 
   return (
     <View style={style.container}>
-      <TextInput
-        style={style.input}
-        maxLength={2}
-        keyboardType="number-pad"
-        value={enteredNumber}
-        onChangeText={enteredNumberHandler}
-      />
-      <View style={style.btnBox}>
-        <PrimaryButton onPress={confirmHandler} color={colors.btnLightGreen}>
-          Confirm
-        </PrimaryButton>
-        <PrimaryButton onPress={resetInput} color={colors.btnLightRed}>
-          Reset
-        </PrimaryButton>
+      <Text style={style.title}>guess my number</Text>
+      <View style={style.card}>
+        <Text style={style.innerText}>Enter a number</Text>
+        <TextInput
+          style={style.input}
+          maxLength={2}
+          keyboardType="number-pad"
+          value={enteredNumber}
+          onChangeText={enteredNumberHandler}
+        />
+        <View style={style.btnBox}>
+          <PrimaryButton onPress={confirmHandler} color={colors.btnLightGreen}>
+            Confirm
+          </PrimaryButton>
+          <PrimaryButton onPress={resetInput} color={colors.btnLightRed}>
+            Reset
+          </PrimaryButton>
+        </View>
       </View>
     </View>
   );
@@ -46,9 +50,25 @@ export default function StartGameScreen({ pickedNumber }) {
 
 const style = StyleSheet.create({
   container: {
+    flex: 1,
+    alignItems: "center",
+    marginTop: 30,
+  },
+  title: {
+    color: "white",
+    fontSize: 42,
+    fontWeight: "bold",
+    marginTop: 40,
+  },
+  innerText: {
+    textAlign: "center",
+    fontSize: 22,
+    color: "white",
+  },
+  card: {
     backgroundColor: colors.secondaryColor,
-    padding: 16,
-    marginTop: 80,
+    padding: 50,
+    marginTop: 50,
     marginHorizontal: 20,
     borderRadius: 26,
     elevation: 5,
@@ -64,7 +84,7 @@ const style = StyleSheet.create({
     borderBottomWidth: 0.5,
     borderBottomColor: "#DCDEF7",
     padding: 5,
-    marginBottom: 5,
+    marginBottom: 15,
     width: 50,
     alignSelf: "center",
     color: "white",
@@ -72,6 +92,7 @@ const style = StyleSheet.create({
   btnBox: {
     flexDirection: "row",
     justifyContent: "center",
+
     alignItems: "center",
     margin: 5,
   },

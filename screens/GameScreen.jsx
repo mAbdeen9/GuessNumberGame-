@@ -3,9 +3,12 @@ import React, { useEffect, useState } from "react";
 import Title from "../components/ui/Title";
 import PrimaryButton from "../components/ui/PrimaryButton";
 import NumberContainer from "../components/game/NumberContainer";
+import { colors } from "../utils/colors";
+
 let firstGuess;
 let minBoundary = 1;
 let maxBoundary = 100;
+
 export default function GameScreen({ pickedNumber, gameOver }) {
   const [currentGuess, setCurrentGuess] = useState("");
   let initialGuess;
@@ -45,19 +48,29 @@ export default function GameScreen({ pickedNumber, gameOver }) {
     <View style={style.container}>
       <Title>Opponents guess 🔮 </Title>
       <NumberContainer>{currentGuess}</NumberContainer>
-      <View>
-        <Text style={style.text}>Higher or lower? 🤔</Text>
-      </View>
-      <View>
-        <PrimaryButton onPress={guessNumberHandler.bind(this, "bigger")}>
-          ✚
-        </PrimaryButton>
-        <PrimaryButton onPress={guessNumberHandler.bind(this, "smaller")}>
-          −
-        </PrimaryButton>
-      </View>
-      <View>
-        <Text>Log rounds</Text>
+      <View style={style.card}>
+        <View>
+          <Text style={style.text}>Higher or lower? 🤔</Text>
+        </View>
+        <View>
+          <PrimaryButton
+            size={35}
+            color={colors.blueLight}
+            onPress={guessNumberHandler.bind(this, "bigger")}
+          >
+            ✚
+          </PrimaryButton>
+          <PrimaryButton
+            size={35}
+            color={colors.btnLightRed}
+            onPress={guessNumberHandler.bind(this, "smaller")}
+          >
+            −
+          </PrimaryButton>
+        </View>
+        <View>
+          <Text>Log rounds</Text>
+        </View>
       </View>
     </View>
   );
@@ -69,12 +82,17 @@ const style = StyleSheet.create({
     padding: 16,
     marginTop: 41,
   },
+  card: {
+    backgroundColor: colors.secondaryColor,
+    marginTop: 30,
+    borderRadius: 40,
+    padding: 16,
+  },
   text: {
-    fontSize: 28,
+    fontSize: 20,
     color: "white",
     margin: 6,
     padding: 16,
-    textAlign: "center",
   },
 });
 
