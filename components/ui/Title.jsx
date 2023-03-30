@@ -10,11 +10,11 @@ export default Title;
 
 const style = StyleSheet.create({
   title: {
-    fontSize: 32,
-    fontWeight: "bold",
+    fontSize: 29,
     color: colors.title,
     textAlign: "center",
     padding: 6,
     marginBottom: 10,
+    fontFamily: "poppins-bold",
   },
 });

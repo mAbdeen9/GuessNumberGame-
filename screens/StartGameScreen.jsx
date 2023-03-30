@@ -25,7 +25,7 @@ export default function StartGameScreen({ pickedNumber }) {
 
   return (
     <View style={style.container}>
-      <Text style={style.title}>guess my number</Text>
+      <Text style={style.title}>Guess my number</Text>
       <View style={style.card}>
         <Text style={style.innerText}>Enter a number</Text>
         <TextInput
@@ -56,14 +56,16 @@ const style = StyleSheet.create({
   },
   title: {
     color: "white",
-    fontSize: 42,
+    fontSize: 32,
     fontWeight: "bold",
     marginTop: 40,
+    fontFamily: "poppins-bold",
   },
   innerText: {
     textAlign: "center",
     fontSize: 22,
     color: "white",
+    fontFamily: "poppins-regular",
   },
   card: {
     backgroundColor: colors.secondaryColor,

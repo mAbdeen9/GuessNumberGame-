@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import Title from "../components/ui/Title";
 import PrimaryButton from "../components/ui/PrimaryButton";
 import NumberContainer from "../components/game/NumberContainer";
+import Ionicons from "@expo/vector-icons/Ionicons";
 import { colors } from "../utils/colors";
 
 let firstGuess;
@@ -52,24 +53,21 @@ export default function GameScreen({ pickedNumber, gameOver }) {
         <View>
           <Text style={style.text}>Higher or lower? 🤔</Text>
         </View>
-        <View>
+        <View style={style.btnCard}>
           <PrimaryButton
             size={35}
             color={colors.blueLight}
             onPress={guessNumberHandler.bind(this, "bigger")}
           >
-            ✚
+            <Ionicons size={45} name="md-add" />
           </PrimaryButton>
           <PrimaryButton
             size={35}
             color={colors.btnLightRed}
             onPress={guessNumberHandler.bind(this, "smaller")}
           >
-            −
+            <Ionicons size={45} name="md-remove" />
           </PrimaryButton>
-        </View>
-        <View>
-          <Text>Log rounds</Text>
         </View>
       </View>
     </View>
@@ -88,8 +86,14 @@ const style = StyleSheet.create({
     borderRadius: 40,
     padding: 16,
   },
+  btnCard: {
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+  },
   text: {
     fontSize: 20,
+    fontFamily: "poppins-regular",
     color: "white",
     margin: 6,
     padding: 16,

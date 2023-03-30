@@ -9,27 +9,29 @@ export default function PrimaryButton({
 }) {
   const style = StyleSheet.create({
     container: {
-      backgroundColor: `${color}`,
-      paddingHorizontal: 16,
-      paddingVertical: 8,
-      alignItems: "center",
-      borderRadius: 32,
-      margin: 5,
-      width: 100,
-      alignSelf: "center",
       overflow: "hidden",
     },
     btn: {
       textAlign: "center ",
-      paddingHorizontal: 1,
+      height: 70,
       width: 120,
       justifyContent: "center",
       alignItems: "center",
+      alignContent: "center",
+      backgroundColor: `${color}`,
+      paddingHorizontal: 12,
+      paddingVertical: 16,
+      borderRadius: 10,
+      margin: 5,
     },
     text: {
       fontSize: size,
       color: "white",
       fontWeight: "bold",
+      justifyContent: "center",
+      alignItems: "center",
+      alignContent: "center",
+      fontFamily: "poppins-bold",
     },
     pressed: {
       opacity: 0.4,
