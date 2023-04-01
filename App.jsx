@@ -11,6 +11,7 @@ import * as SplashScreen from "expo-splash-screen";
 export default function App() {
   const [pickedNumber, setPickedNumber] = useState("");
   const [gameOver, setGameOver] = useState(false);
+  const [numberOfTries, setNumberOfTries] = useState(0);
 
   const [fontsLoading] = useFonts({
     "poppins-regular": require("./assets/fonts/Poppins-Regular.ttf"),
@@ -33,14 +34,29 @@ export default function App() {
 
   const pickNumberHandler = (num) => setPickedNumber(num);
   const gameOverHandler = () => setGameOver(true);
+  const resetGame = () => {
+    setPickedNumber("");
+    setGameOver(false);
+  };
 
   let screen = <StartGameScreen pickedNumber={pickNumberHandler} />;
 
   if (pickedNumber)
     screen = (
-      <GameScreen gameOver={gameOverHandler} pickedNumber={pickedNumber} />
+      <GameScreen
+        numberOfTriesData={(data) => setNumberOfTries(data)}
+        gameOver={gameOverHandler}
+        pickedNumber={pickedNumber}
+      />
     );
-  if (gameOver) screen = <GameOverScreen />;
+  if (gameOver)
+    screen = (
+      <GameOverScreen
+        numberOfTries={numberOfTries}
+        pickedNumber={pickedNumber}
+        resetGameHandler={resetGame}
+      />
+    );
 
   return (
     <SafeAreaView style={styles.container}>

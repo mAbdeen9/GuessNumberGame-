@@ -10,14 +10,25 @@ let firstGuess;
 let minBoundary = 1;
 let maxBoundary = 100;
 
-export default function GameScreen({ pickedNumber, gameOver }) {
+export default function GameScreen({
+  pickedNumber,
+  gameOver,
+  numberOfTriesData,
+}) {
   const [currentGuess, setCurrentGuess] = useState("");
+  const [numberOfTries, setNumberOfTries] = useState(0);
   let initialGuess;
 
   useEffect(() => {
+    minBoundary = 1;
+    maxBoundary = 100;
     initialGuess = generateRandomBetween(1, 100, pickedNumber);
     setCurrentGuess(initialGuess);
   }, []);
+
+  useEffect(() => {
+    numberOfTriesData(numberOfTries);
+  }, [numberOfTries]);
 
   useEffect(() => {
     if (currentGuess == pickedNumber) {
@@ -40,6 +51,9 @@ export default function GameScreen({ pickedNumber, gameOver }) {
 
     if (status === "bigger") minBoundary = currentGuess;
     if (status === "smaller") maxBoundary = currentGuess;
+    setNumberOfTries((cur) => {
+      return cur + 1;
+    });
     setCurrentGuess(
       generateRandomBetween(maxBoundary, minBoundary, pickedNumber)
     );
@@ -78,7 +92,9 @@ const style = StyleSheet.create({
   container: {
     flex: 1,
     padding: 16,
-    marginTop: 41,
+    gap: 20,
+    justifyContent: "center",
+    alignItems: "center",
   },
   card: {
     backgroundColor: colors.secondaryColor,
