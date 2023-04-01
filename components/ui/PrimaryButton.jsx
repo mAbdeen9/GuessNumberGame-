@@ -6,6 +6,7 @@ export default function PrimaryButton({
   color = "",
   onPress,
   size = 20,
+  width = 120,
 }) {
   const style = StyleSheet.create({
     container: {
@@ -14,7 +15,7 @@ export default function PrimaryButton({
     btn: {
       textAlign: "center ",
       height: 70,
-      width: 120,
+      width: width || 120,
       justifyContent: "center",
       alignItems: "center",
       alignContent: "center",
