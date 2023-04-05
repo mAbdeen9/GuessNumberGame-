@@ -2,11 +2,15 @@ import { View, TextInput, StyleSheet, Alert, Text } from "react-native";
 import React, { useState } from "react";
 import PrimaryButton from "../components/ui/PrimaryButton";
 import { colors } from "../utils/colors";
-import { useWindowDimensions } from "react-native";
+import {
+  useWindowDimensions,
+  ScrollView,
+  KeyboardAvoidingView,
+} from "react-native";
 
 export default function StartGameScreen({ pickedNumber }) {
   const [enteredNumber, setEnteredNumber] = useState("");
-  const { width, height } = useWindowDimensions();
+  const { height } = useWindowDimensions();
 
   const marginTopAuto = { marginTop: height < 400 ? -15 : 30 };
   const enteredNumberHandler = (enteredText) => {
@@ -27,27 +31,34 @@ export default function StartGameScreen({ pickedNumber }) {
   };
 
   return (
-    <View style={[style.container, marginTopAuto]}>
-      <Text style={style.title}>Guess my number 🤔</Text>
-      <View style={style.card}>
-        <Text style={style.innerText}>Enter a number</Text>
-        <TextInput
-          style={style.input}
-          maxLength={2}
-          keyboardType="number-pad"
-          value={enteredNumber}
-          onChangeText={enteredNumberHandler}
-        />
-        <View style={style.btnBox}>
-          <PrimaryButton onPress={confirmHandler} color={colors.btnLightGreen}>
-            Confirm
-          </PrimaryButton>
-          <PrimaryButton onPress={resetInput} color={colors.btnLightRed}>
-            Reset
-          </PrimaryButton>
+    <ScrollView style={{ flex: 1 }}>
+      <KeyboardAvoidingView style={{ flex: 1 }} behavior="position">
+        <View style={[style.container, marginTopAuto]}>
+          <Text style={style.title}>Guess my number 🤔</Text>
+          <View style={style.card}>
+            <Text style={style.innerText}>Enter a number</Text>
+            <TextInput
+              style={style.input}
+              maxLength={2}
+              keyboardType="number-pad"
+              value={enteredNumber}
+              onChangeText={enteredNumberHandler}
+            />
+            <View style={style.btnBox}>
+              <PrimaryButton
+                onPress={confirmHandler}
+                color={colors.btnLightGreen}
+              >
+                Confirm
+              </PrimaryButton>
+              <PrimaryButton onPress={resetInput} color={colors.btnLightRed}>
+                Reset
+              </PrimaryButton>
+            </View>
+          </View>
         </View>
-      </View>
-    </View>
+      </KeyboardAvoidingView>
+    </ScrollView>
   );
 }
 
