@@ -1,14 +1,16 @@
-import { Text, StyleSheet } from "react-native";
+import { Text, StyleSheet, Dimensions } from "react-native";
 import React from "react";
 import { colors } from "../../utils/colors";
 
 const Title = ({ children, color }) => {
+  const deviceWidth = Dimensions.get("screen").width;
+
   const style = StyleSheet.create({
     title: {
-      fontSize: 29,
+      fontSize: deviceWidth < 380 ? 26 : 29,
       color: color || colors.title,
       textAlign: "center",
-      padding: 10,
+      padding: deviceWidth < 380 ? 8 : 10,
       marginBottom: 20,
       fontFamily: "poppins-bold",
       borderWidth: 1,

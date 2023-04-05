@@ -2,10 +2,13 @@ import { View, TextInput, StyleSheet, Alert, Text } from "react-native";
 import React, { useState } from "react";
 import PrimaryButton from "../components/ui/PrimaryButton";
 import { colors } from "../utils/colors";
+import { useWindowDimensions } from "react-native";
 
 export default function StartGameScreen({ pickedNumber }) {
   const [enteredNumber, setEnteredNumber] = useState("");
+  const { width, height } = useWindowDimensions();
 
+  const marginTopAuto = { marginTop: height < 400 ? -15 : 30 };
   const enteredNumberHandler = (enteredText) => {
     setEnteredNumber(enteredText);
   };
@@ -24,8 +27,8 @@ export default function StartGameScreen({ pickedNumber }) {
   };
 
   return (
-    <View style={style.container}>
-      <Text style={style.title}>Guess my number</Text>
+    <View style={[style.container, marginTopAuto]}>
+      <Text style={style.title}>Guess my number 🤔</Text>
       <View style={style.card}>
         <Text style={style.innerText}>Enter a number</Text>
         <TextInput
@@ -52,11 +55,10 @@ const style = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: "center",
-    marginTop: 30,
   },
   title: {
     color: "white",
-    fontSize: 32,
+    fontSize: 30,
     fontWeight: "bold",
     marginTop: 40,
     fontFamily: "poppins-bold",
@@ -78,6 +80,8 @@ const style = StyleSheet.create({
     shadowOffset: { width: 0, height: 2 },
     shadowRadius: 5,
     shadowOpacity: 0.2,
+    maxWidth: "90%",
+    width: 450,
   },
   input: {
     height: 50,
@@ -94,7 +98,6 @@ const style = StyleSheet.create({
   btnBox: {
     flexDirection: "row",
     justifyContent: "center",
-
     alignItems: "center",
     margin: 5,
   },

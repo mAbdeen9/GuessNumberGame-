@@ -1,7 +1,9 @@
-import { View, Text, StyleSheet, Image } from "react-native";
+import { View, Text, StyleSheet, Image, Dimensions } from "react-native";
 import React from "react";
 import Title from "../components/ui/Title";
 import PrimaryButton from "../components/ui/PrimaryButton";
+
+const deviceWidth = Dimensions.get("screen").width;
 
 const style = StyleSheet.create({
   container: {
@@ -12,9 +14,9 @@ const style = StyleSheet.create({
     alignItems: "center",
   },
   img: {
-    width: 300,
-    height: 300,
-    borderRadius: 150,
+    width: deviceWidth < 380 ? 150 : 300,
+    height: deviceWidth < 380 ? 150 : 300,
+    borderRadius: deviceWidth < 380 ? 75 : 300,
     margin: 20,
   },
   text: {

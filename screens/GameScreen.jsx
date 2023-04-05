@@ -73,14 +73,14 @@ export default function GameScreen({
             color={colors.blueLight}
             onPress={guessNumberHandler.bind(this, "bigger")}
           >
-            <Ionicons size={45} name="md-add" />
+            <Ionicons size={30} name="md-add" />
           </PrimaryButton>
           <PrimaryButton
             size={35}
             color={colors.btnLightRed}
             onPress={guessNumberHandler.bind(this, "smaller")}
           >
-            <Ionicons size={45} name="md-remove" />
+            <Ionicons size={30} name="md-remove" />
           </PrimaryButton>
         </View>
       </View>

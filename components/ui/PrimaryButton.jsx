@@ -10,11 +10,14 @@ export default function PrimaryButton({
 }) {
   const style = StyleSheet.create({
     container: {
+      justifyContent: "center",
+      alignContent: "center",
+      alignItems: "center",
       overflow: "hidden",
     },
     btn: {
-      textAlign: "center ",
-      height: 70,
+      textAlign: "center",
+      height: 65,
       width: width || 120,
       justifyContent: "center",
       alignItems: "center",
